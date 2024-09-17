@@ -1,20 +1,34 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+<div class="tm-page-wrap mx-auto">
+    <div class="position-relative">
+        <header class="position-absolute tm-site-header">
+            <div class="container-fluid position-relative">
+                <NavMenu />
+            </div>
+        </header>
+
+        <Banner />
+
     </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+    <div class="container-fluid">
+        <div id="content" class="mx-auto tm-content-container">
+            <main>
+                <article class="content px-4">
+                    @Body
+                </article>
+            </main>
+            <footer>
+                <Footer />
+            </footer>
         </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    </div>
+    <Modal />
 </div>
+
+
+
+
 
 <div id="blazor-error-ui">
     An unhandled error has occurred.
