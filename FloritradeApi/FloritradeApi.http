@@ -1,0 +1,6 @@
+@FloritradeApi_HostAddress = http://localhost:5043
+
+GET {{FloritradeApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
