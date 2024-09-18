@@ -1,4 +1,9 @@
-﻿function setVideoSize() {
+﻿$(document).ready(function () {
+    $('#mainCheckbox').click(function () {
+        $('.childCheckbox').prop('checked', this.checked);
+    });
+});
+function setVideoSize() {
     const vidWidth = 1920;
     const vidHeight = 1080;
     let windowWidth = window.innerWidth;

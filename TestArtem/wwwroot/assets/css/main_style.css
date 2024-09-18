@@ -112,9 +112,7 @@ h2, p { color: #666666; }
         background-color: #007b5e!important;
     }
 
-/*
-    Button hover effect: https://tympanus.net/Development/CreativeButtons/
-*/
+
 
 .tm-btn-animate {
     position: relative;
@@ -272,15 +270,25 @@ h2, p { color: #666666; }
 
 .tm-category-link {
     color: #3399CC;
-    padding: 10px;
+    padding: 7px;
+    font-size: 20px;
     border-bottom: 3px solid transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: transparent;
 }
 
-.tm-category-link.active,
-.tm-category-link:hover {
-    border-bottom: 3px solid #3399CC;
-    color: #3399CC;
-}
+    .tm-category-link.active,
+    .tm-category-link:hover, .tm-category-link:focus {
+        border-bottom: 3px solid #3399CC;
+        color: #3399CC;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        background: transparent;
+        outline:none!important;
+    }
 
 .tm-paging-link {
     background-color: #F4F4F4;
@@ -520,6 +528,9 @@ video {
     .nav-item[b-789jrodnxw] {
         padding-bottom:0px;
     }
+    .tm-category-item {
+        margin:0;
+    }
 }
 
 @media (max-width: 640px) {
@@ -540,6 +551,22 @@ video {
     .tm-share-box {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+    }
+    .tm-category-list {
+        display: block;
+        width:100%;
+        text-align:left;
+    }
+    .tm-category-link {
+        padding: 0px;
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+    .nav .nav-item .nav-link.active {
+        color: #495057;
+        background-color: #dee2e6;
+        background-color: #dee2e6;
     }
 }
 
@@ -565,4 +592,78 @@ video {
 }
 .custom_table input{
     width:80px;
+}
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+    margin-bottom:0px;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 4px;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius:4px;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+    border-radius: 4px;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
+}
+.custom_table input{
+    max-width:80px;
+    width:100%;
+}
+.custom_table table tr td, .custom_table table tr th{
+    vertical-align: middle;
+    line-height: 23px;
+    font-size: 17px;
+}
+.bottom_links{color: #3399CC;
+    padding: 7px;
+    font-size: 20px;
+    border-bottom: 3px solid transparent;
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
