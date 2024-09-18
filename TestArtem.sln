@@ -5,6 +5,10 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestArtem", "TestArtem\TestArtem.csproj", "{C69F3806-1802-47DB-A559-2CF40F50B85C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloritradeApi", "FloritradeApi\FloritradeApi.csproj", "{9FA891DD-7CBB-448F-AD61-DD5C879254DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "globals", "globals\globals.csproj", "{34E0FC18-8B12-42B6-9561-1208DC0471D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C69F3806-1802-47DB-A559-2CF40F50B85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C69F3806-1802-47DB-A559-2CF40F50B85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C69F3806-1802-47DB-A559-2CF40F50B85C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FA891DD-7CBB-448F-AD61-DD5C879254DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FA891DD-7CBB-448F-AD61-DD5C879254DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FA891DD-7CBB-448F-AD61-DD5C879254DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FA891DD-7CBB-448F-AD61-DD5C879254DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34E0FC18-8B12-42B6-9561-1208DC0471D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34E0FC18-8B12-42B6-9561-1208DC0471D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34E0FC18-8B12-42B6-9561-1208DC0471D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34E0FC18-8B12-42B6-9561-1208DC0471D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,12 @@
+C:\__\Artem\TestArtem\globals\bin\Debug\net8.0\globals.deps.json
+C:\__\Artem\TestArtem\globals\bin\Debug\net8.0\globals.dll
+C:\__\Artem\TestArtem\globals\bin\Debug\net8.0\globals.pdb
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.GeneratedMSBuildEditorConfig.editorconfig
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.AssemblyInfoInputs.cache
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.AssemblyInfo.cs
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.csproj.CoreCompileInputs.cache
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.sourcelink.json
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.dll
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\refint\globals.dll
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.pdb
+C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\ref\globals.dll
