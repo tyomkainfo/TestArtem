@@ -10,3 +10,15 @@ C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.dll
 C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\refint\globals.dll
 C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\globals.pdb
 C:\__\Artem\TestArtem\globals\obj\Debug\net8.0\ref\globals.dll
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\bin\Debug\net8.0\globals.deps.json
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\bin\Debug\net8.0\globals.dll
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\bin\Debug\net8.0\globals.pdb
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.AssemblyInfoInputs.cache
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.AssemblyInfo.cs
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.csproj.CoreCompileInputs.cache
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.sourcelink.json
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.dll
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\refint\globals.dll
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.pdb
+C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\ref\globals.dll

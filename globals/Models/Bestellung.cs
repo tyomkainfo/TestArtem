@@ -38,8 +38,11 @@ namespace globals.Models
         [DataMember(Name = "Besteller")]
         public string Besteller { get; set; }
         [DataMember(Name = "Status")]
-        public int Status { get; set; }
+        public string Status { get; set; }
         [DataMember(Name = "StkCC")]
+        public DateTime Zeit { get; set; }
+        public string Menge { get; set; }
+        [DataMember(Name = "Menge")]
         public int StkCC { get; set; }
     }
 }
