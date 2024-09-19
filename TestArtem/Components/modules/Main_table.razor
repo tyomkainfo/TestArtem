@@ -1,4 +1,5 @@
-﻿@namespace YourProjectNamespace.Modules
+﻿@using globals.Models
+@namespace YourProjectNamespace.Modules
 
 <div class="row">
     <div class="col-12">
@@ -239,7 +240,42 @@
     </div>
    
 </div>
+<button class="btn btn-primary" @onclick="SetDemoData">Click me</button>
+@foreach (var bestellung in _bestellungen)
+{
+    <ul>
+        <li>@bestellung.LfdNr</li>
+    </ul>
+}
+
 
 @code {
+    private List<Bestellung> _bestellungen = new List<Bestellung>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        SetDemoData();
+    }
+
+    private void SetDemoData()
+    {
+        Bestellung tmp = new Bestellung();
+        tmp.LfdNr = 1;
+        tmp.Ankaeufer = "Ankaeufer";
+        tmp.Datum = DateTime.Now;
+        tmp.Kunde = "6";
+        tmp.Artikel = "Calluna BL 12cm Rot";
+        tmp.VP = "DN";
+        tmp.Anzahlpaletten = 80;
+        tmp.StueckJePalette = 8;
+        tmp.GesamtanzahlNetto = 640;
+        tmp.Einzelpreis = 1.5;
+        tmp.Bemerkung = "Bemerkung für diese Bestellung";
+        tmp.Container = "Tag 5";
+        tmp.Besteller = "Daniel";
+        tmp.Status = 1;
+        tmp.StkCC = 40;
+        _bestellungen.Add(tmp);
+    }
 
 }
