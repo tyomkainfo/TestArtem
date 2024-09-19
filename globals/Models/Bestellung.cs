@@ -38,7 +38,7 @@ namespace globals.Models
         [DataMember(Name = "Besteller")]
         public string Besteller { get; set; }
         [DataMember(Name = "Status")]
-        public string Status { get; set; }
+        public int Status { get; set; }
         [DataMember(Name = "StkCC")]
         public DateTime Zeit { get; set; }
         public string Menge { get; set; }

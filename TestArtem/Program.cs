@@ -1,3 +1,4 @@
+using ClientServices;
 using TestArtem.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSingleton<BestellungenService>();
 
 var app = builder.Build();
 
