@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("globals")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb1707b7c1bf401f2e2707b2fd214ee0665edbac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00f2771da30d1856b6f8147356635932287111b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("globals")]
 [assembly: System.Reflection.AssemblyTitleAttribute("globals")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

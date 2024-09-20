@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FloritradeApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92477b0c8117b25ff5c4065b5b9ff93fa255d414")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00f2771da30d1856b6f8147356635932287111b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("FloritradeApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FloritradeApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
