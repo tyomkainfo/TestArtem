@@ -17,10 +17,10 @@ namespace ClientServices.WebApi
             defapi = "v1";
         }
 
-        public List<Bestellung> GetFromAPI(int lieferant, int startrow, int count)
+        public async Task<List<Bestellung>> GetFromAPI(int lieferant, int startrow, int count)
         {
             object par = new { lieferant, startrow, count };
-            List<Bestellung> tmp = RequestGet<List<Bestellung>>("/list/" + +lieferant + "/" + startrow + "/" + count);
+            List<Bestellung> tmp = await RequestGet<List<Bestellung>>("/list/" + +lieferant + "/" + startrow + "/" + count);
             return tmp;
         }
     }

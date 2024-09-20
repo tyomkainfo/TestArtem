@@ -44,7 +44,7 @@ namespace nrnUtil
             {
                 try
                 {
-                    var response = client.GetAsync(url).Result;
+                    var response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
                     return await response.Content.ReadAsStringAsync();
                 }
@@ -65,12 +65,12 @@ namespace nrnUtil
                 return Activator.CreateInstance<T>();
         }
 
-        public S RequestGet<S>(string url, string appserver = "", string api = "", bool isqueryparam = false)
+        public async Task<S> RequestGet<S>(string url, string appserver = "", string api = "", bool isqueryparam = false)
         {
             url = ((controller != "") ? controller + ((url.Substring(0, 1) != "/") ? "/" : "") : "") + url + ((isqueryparam) ? "" : ((url.Substring(url.Length - 1, 1) != "/") ? "/" : ""));
             try
             {
-                var result = RequestGet(url, appserver, api).Result;
+                var result = await RequestGet(url, appserver, api);
                 return JsonConvert.DeserializeObject<S>(result);
             }
             catch (Exception ex)
