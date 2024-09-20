@@ -9,11 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FloritradeApi", "Floritrade
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "globals", "globals\globals.csproj", "{34E0FC18-8B12-42B6-9561-1208DC0471D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServices", "ClientServices\ClientServices.csproj", "{DBE96FBB-A24C-4A9C-B7EA-4CFA62EA4C7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientServices", "ClientServices\ClientServices.csproj", "{DBE96FBB-A24C-4A9C-B7EA-4CFA62EA4C7D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nrnUtil", "nrnUtil\nrnUtil.csproj", "{5CD1AACC-03A1-47CD-B742-62CCAD2D353C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebAssembly", "TestWebAssembly\TestWebAssembly.csproj", "{69B0D6BB-6AE9-4A60-9337-D6ECF33D4DE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWebAssembly", "TestWebAssembly\TestWebAssembly.csproj", "{69B0D6BB-6AE9-4A60-9337-D6ECF33D4DE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{96C09EA6-8026-46E4-A0D1-0389FC4192CC}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
