@@ -41,8 +41,12 @@ namespace globals.Models
         public string Status { get; set; }
         [DataMember(Name = "StkCC")]
         public DateTime Zeit { get; set; }
+        [DataMember(Name = "Zeit")]
         public string Menge { get; set; }
         [DataMember(Name = "Menge")]
+        public string Status_bg { get; set; }
+        [DataMember(Name = "Status_bg")]
         public int StkCC { get; set; }
+
     }
 }
