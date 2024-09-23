@@ -9,28 +9,28 @@
             <h3 class="tm-text-primary tm-categories-text">Categories:</h3>
             <ul class="nav tm-category-list" role="tablist">
                 <li class="nav-item tm-category-item" role="presentation">
-                    <button id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" class="nav-link active tm-category-link active">Alle</button>
+                    <button id="showAll" class="nav-link @GetActiveFlag(Bestellstatus.alle) tm-category-link @GetActiveFlag(Bestellstatus.alle)" @onclick="(() => FilterBestellungen(Bestellstatus.alle))">Alle</button>
                 </li>
                 <li class="nav-item tm-category-item" role="presentation">
-                    <button id="neue-tab" data-toggle="tab" data-target="#neue" type="button" role="tab" aria-controls="neue" aria-selected="false" href="#" class="nav-link tm-category-link">Neue</button>
-                 </li>
-                <li class="nav-item tm-category-item" role="presentation"><button id="bestatigte-tab" data-toggle="tab" data-target="#bestatigte" type="button" role="tab" aria-controls="bestatigte" aria-selected="false" href="#" class="nav-link tm-category-link">Bestätigte</button></li>
-                <li class="nav-item tm-category-item" role="presentation"><button id="gedruckt-tab" data-toggle="tab" data-target="#gedruckt" type="button" role="tab" aria-controls="gedruckt" aria-selected="false" href="#" class="nav-link tm-category-link">Etiketten gedruckt</button></li>
-                <li class="nav-item tm-category-item" role="presentation"><button id="reservierung-tab" data-toggle="tab" data-target="#reservierung" type="button" role="tab" aria-controls="reservierung" aria-selected="false" href="#" class="nav-link tm-category-link">Reservierung</button></li>
-                <li class="nav-item tm-category-item" role="presentation"><button id="vorschau-tab" data-toggle="tab" data-target="#vorschau" type="button" role="tab" aria-controls="vorschau" aria-selected="false" href="#" class="nav-link tm-category-link">Vorschau</button></li>
+                    <button id="showNeue" @onclick="(() => FilterBestellungen(Bestellstatus.neu))" class="nav-link @GetActiveFlag(Bestellstatus.neu) tm-category-link @GetActiveFlag(Bestellstatus.neu)">Neue</button>
+                </li>
+                <li class="nav-item tm-category-item" role="presentation">
+                    <button id="showBestatigte" @onclick="(() => FilterBestellungen(Bestellstatus.gesehen))" class="nav-link @GetActiveFlag(Bestellstatus.gesehen) tm-category-link @GetActiveFlag(Bestellstatus.gesehen)">Bestätigte</button>
+                </li>
+                <li class="nav-item tm-category-item" role="presentation">
+                    <button id="showGedruckt" @onclick="(()=> FilterBestellungen(Bestellstatus.gedruckt))" class="nav-link @GetActiveFlag(Bestellstatus.gedruckt) tm-category-link @GetActiveFlag(Bestellstatus.gedruckt)">Etiketten gedruckt</button>
+                </li>
             </ul>
         </div>
     </div>
 </div>
+
 <div class="table-responsive custom_table tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-       
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm" id="ordersTable">
             <thead class="table-dark">
                 <tr>
-                    <th>
-
-                    </th>
+                    <th></th>
                     <th>Lfd. Nr.</th>
                     <th>Ankäufer</th>
                     <th>Datum</th>
@@ -47,10 +47,10 @@
                     <th>Stk/cc</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var bestellung in _bestellungen)
+            <tbody id="ordersTableBody">
+                @foreach (var bestellung in _filteredBestellungen)
                 {
-                    <tr class="@GetStatusClass(bestellung.Status_bg)">
+                    <tr class="@GetStatusClass(bestellung.Status_bg)" data-status="@bestellung.Status_bg">
                         <th>
                             <label class="switch">
                                 <input type="checkbox" class="childCheckbox">
@@ -83,41 +83,142 @@
             Alle Auswählen
         </div>
     </div>
-    <div class="tab-pane fade" id="neue" role="tabpanel" aria-labelledby="neue-tab">
-        <Ubersicht/>
-    </div>
-    <div class="tab-pane fade" id="bestatigte" role="tabpanel" aria-labelledby="bestatigte-tab">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-    </div>
-    <div class="tab-pane fade" id="gedruckt" role="tabpanel" aria-labelledby="gedruckt-tab">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-    </div>
-    <div class="tab-pane fade" id="reservierung" role="tabpanel" aria-labelledby="reservierung-tab">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-    </div>
-    <div class="tab-pane fade" id="vorschau" role="tabpanel" aria-labelledby="vorschau-tab">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-    </div>
-   
 </div>
 
+<script>
+    
+</script>
+
+
+
 @code {
-    private List<Bestellung> _bestellungen = new List<Bestellung>();
+    private List<Bestellung> _allBestellungen = new List<Bestellung>();
+    private List<Bestellung> _filteredBestellungen = new List<Bestellung>();
+    private int ActiveBestellstatus = Bestellstatus.alle;
 
     protected override async Task OnInitializedAsync()
     {
         SetDemoData();
+        FilterBestellungen(ActiveBestellstatus); // Show all orders by default
         //GetFromApi();
-    }
-
-    private void GetFromApi()
-    {
-        _bestellungen = _BestellungenService.GetFromAPI(1,1,1).Result;
     }
 
     private void SetDemoData()
     {
-        _bestellungen = _BestellungenService.GetDemoData();
+        _allBestellungen.Clear();
+        _allBestellungen.Add(new Bestellung
+            {
+                LfdNr = 382218,
+                Ankaeufer = "elbers",
+                Datum = DateTime.Now,
+                Zeit = DateTime.Now,
+                Kunde = "6",
+                Artikel = "Call vulg. GG Sunset Trio 11 cm Trio",
+                VP = "DN",
+                Menge = "80 X 8",
+                StueckJePalette = 8,
+                GesamtanzahlNetto = 640,
+                Einzelpreis = 1.5,
+                Bemerkung = "Bemerkung für diese Bestellung",
+                Container = "Tag 5",
+                Besteller = "Daniel",
+                Status_bg = "gedruckt",
+                StkCC = 40
+            });
+        _allBestellungen.Add(new Bestellung
+            {
+                LfdNr = 382219,
+                Ankaeufer = "elbers",
+                Datum = DateTime.Now,
+                Zeit = DateTime.Now,
+                Kunde = "22",
+                Artikel = "* Ampelpflanzen  xyz",
+                VP = "DN",
+                Menge = "42 X 4",
+                StueckJePalette = 4,
+                GesamtanzahlNetto = 40,
+                Einzelpreis = 2.5,
+                Bemerkung = "Bemerkung für diese Bestellung",
+                Container = "Tag 2",
+                Besteller = "Daniel",
+                Status_bg = "bestätigt",
+                StkCC = 20
+            });
+        _allBestellungen.Add(new Bestellung{
+            LfdNr = 382219,
+            Ankaeufer = "elbers",
+            Datum = DateTime.Now,
+            Zeit = DateTime.Now,
+            Kunde = "22",
+            Artikel = "* Ampelpflanzen  xyz",
+            VP = "DN",
+            Menge = "42 X 4",
+            StueckJePalette = 4,
+            GesamtanzahlNetto = 40,
+            Einzelpreis = 2.5,
+            Bemerkung = "Bemerkung für diese Bestellung",
+            Container = "Tag 2",
+            Besteller = "Daniel",
+            Status_bg = "bestätigt",
+            StkCC = 20
+        });
+
+        _allBestellungen.Add(new Bestellung
+        {
+            LfdNr = 382220,
+            Ankaeufer = "test test",
+            Datum = DateTime.Now,
+            Zeit = DateTime.Now,
+            Kunde = "777",
+            Artikel = "Item",
+            VP = "DN",
+            Menge = "7 X 5",
+            StueckJePalette = 4,
+            GesamtanzahlNetto = 40,
+            Einzelpreis = 2.5,
+            Bemerkung = "Bemerkung für diese Bestellung",
+            Container = "Tag 10",
+            Besteller = "John Doi",
+            Status_bg = "neu",
+            StkCC = 20
+        });
+        _allBestellungen.Add(new Bestellung    {
+                LfdNr = 382220,
+                Ankaeufer = "test test",
+                Datum = DateTime.Now,
+                Zeit = DateTime.Now,
+                Kunde = "777",
+                Artikel = "Item",
+                VP = "DN",
+                Menge = "7 X 5",
+                StueckJePalette = 4,
+                GesamtanzahlNetto = 40,
+                Einzelpreis = 2.5,
+                Bemerkung = "Bemerkung für diese Bestellung",
+                Container = "Tag 10",
+                Besteller = "John Doi",
+                Status_bg = "neu",
+                StkCC = 20
+            });
+    }
+
+    private void FilterBestellungen(int status)
+    {
+        _filteredBestellungen = status switch
+        {
+            Bestellstatus.neu => _allBestellungen.Where(b => b.Status_bg == "neu").ToList(),
+            Bestellstatus.bestaetigt => _allBestellungen.Where(b => b.Status_bg == "bestätigt").ToList(),
+            Bestellstatus.gedruckt => _allBestellungen.Where(b => b.Status_bg == "gedruckt").ToList(),
+            _ => _allBestellungen // Show all orders
+        };
+        ActiveBestellstatus = status;
+        // Обновление состояния для рендера
+        StateHasChanged();
+    }
+
+    private string GetActiveFlag(int status)
+    {
+        return (ActiveBestellstatus == status) ? "active" : "";
     }
 
     private string GetStatusClass(string status)
@@ -130,4 +231,15 @@
             _ => ""
         };
     }
+
+    private void GetFromApi()
+    {
+        _bestellungen = _BestellungenService.GetFromAPI(1,1,1).Result;
+    }
+
+    private void SetDemoData2()
+    {
+        _bestellungen = _BestellungenService.GetDemoData();
+    }
+
 }
