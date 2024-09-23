@@ -1,4 +1,5 @@
 ﻿@using globals.Models
+@using globals;
 @namespace YourProjectNamespace.Modules
 
 <div class="row">
@@ -7,16 +8,16 @@
             <h3 class="tm-text-primary tm-categories-text">Categories:</h3>
             <ul class="nav tm-category-list" role="tablist">
                 <li class="nav-item tm-category-item" role="presentation">
-                    <button id="showAll" class="nav-link active tm-category-link active" @onclick="@(() => FilterBestellungen("alle"))">Alle</button>
+                    <button id="showAll" class="nav-link @GetActiveFlag(Bestellstatus.alle) tm-category-link @GetActiveFlag(Bestellstatus.alle)" @onclick="(() => FilterBestellungen(Bestellstatus.alle))">Alle</button>
                 </li>
                 <li class="nav-item tm-category-item" role="presentation">
-                    <button id="showNeue"  @onclick="@(() => FilterBestellungen("neue"))" class="nav-link tm-category-link">Neue</button>
+                    <button id="showNeue" @onclick="(() => FilterBestellungen(Bestellstatus.neu))" class="nav-link @GetActiveFlag(Bestellstatus.neu) tm-category-link @GetActiveFlag(Bestellstatus.neu)">Neue</button>
                 </li>
                 <li class="nav-item tm-category-item" role="presentation">
-                    <button id="showBestatigte" @onclick="@(() => FilterBestellungen("bestätigte"))" class="nav-link tm-category-link">Bestätigte</button>
+                    <button id="showBestatigte" @onclick="(() => FilterBestellungen(Bestellstatus.gesehen))" class="nav-link @GetActiveFlag(Bestellstatus.gesehen) tm-category-link @GetActiveFlag(Bestellstatus.gesehen)">Bestätigte</button>
                 </li>
                 <li class="nav-item tm-category-item" role="presentation">
-                    <button id="showGedruckt" @onclick="ClickHandler" class="nav-link tm-category-link">Etiketten gedruckt</button>
+                    <button id="showGedruckt" @onclick="(()=> FilterBestellungen(Bestellstatus.gedruckt))" class="nav-link @GetActiveFlag(Bestellstatus.gedruckt) tm-category-link @GetActiveFlag(Bestellstatus.gedruckt)">Etiketten gedruckt</button>
                 </li>
             </ul>
         </div>
@@ -84,39 +85,7 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const showAllBtn = document.getElementById('showAll');
-        const showNeueBtn = document.getElementById('showNeue');
-        const showBestatigteBtn = document.getElementById('showBestatigte');
-        const showGedrucktBtn = document.getElementById('showGedruckt');
-        const tableRows = document.querySelectorAll("#ordersTableBody tr");
-
-        function filterRows(status) {
-            tableRows.forEach(row => {
-                if (status === "alle" || row.getAttribute("data-status") === status) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        }
-
-        showAllBtn.addEventListener('click', function () {
-            filterRows("alle");
-        });
-
-        showNeueBtn.addEventListener('click', function () {
-            filterRows("neu");
-        });
-
-        showBestatigteBtn.addEventListener('click', function () {
-            filterRows("bestätigt");
-        });
-
-        showGedrucktBtn.addEventListener('click', function () {
-            filterRows("gedruckt");
-        });
-    });
+    
 </script>
 
 
@@ -124,11 +93,12 @@
 @code {
     private List<Bestellung> _allBestellungen = new List<Bestellung>();
     private List<Bestellung> _filteredBestellungen = new List<Bestellung>();
+    private int ActiveBestellstatus = Bestellstatus.alle;
 
     protected override async Task OnInitializedAsync()
     {
         SetDemoData();
-        FilterBestellungen("alle"); // Show all orders by default
+        FilterBestellungen(ActiveBestellstatus); // Show all orders by default
     }
 
     private void SetDemoData()
@@ -230,18 +200,23 @@
             });
     }
 
-    private void FilterBestellungen(string status)
+    private void FilterBestellungen(int status)
     {
         _filteredBestellungen = status switch
         {
-            "neue" => _allBestellungen.Where(b => b.Status_bg == "neu").ToList(),
-            "bestätigte" => _allBestellungen.Where(b => b.Status_bg == "bestätigt").ToList(),
-            "gedruckt" => _allBestellungen.Where(b => b.Status_bg == "gedruckt").ToList(),
+            Bestellstatus.neu => _allBestellungen.Where(b => b.Status_bg == "neu").ToList(),
+            Bestellstatus.bestaetigt => _allBestellungen.Where(b => b.Status_bg == "bestätigt").ToList(),
+            Bestellstatus.gedruckt => _allBestellungen.Where(b => b.Status_bg == "gedruckt").ToList(),
             _ => _allBestellungen // Show all orders
         };
-
+        ActiveBestellstatus = status;
         // Обновление состояния для рендера
         StateHasChanged();
+    }
+
+    private string GetActiveFlag(int status)
+    {
+        return (ActiveBestellstatus == status) ? "active" : "";
     }
 
     private string GetStatusClass(string status)
@@ -255,9 +230,6 @@
         };
     }
 
-    private void ClickHandler()
-    {
-        FilterBestellungen("gedruckt");
-    }
+  
 
 }
