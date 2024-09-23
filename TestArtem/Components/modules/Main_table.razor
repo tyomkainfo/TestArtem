@@ -101,7 +101,7 @@
     protected override async Task OnInitializedAsync()
     {
         SetDemoData();
-        FilterBestellungen("alle"); // Показываем все заказы по умолчанию
+        FilterBestellungen("alle"); // Show all orders by default
     }
 
     private void SetDemoData()
@@ -130,7 +130,7 @@
 
         _allBestellungen.Add(new Bestellung
         {
-            LfdNr = 382219, // Убедитесь, что этот номер уникален
+            LfdNr = 382219,
             Ankaeufer = "elbers",
             Datum = DateTime.Now,
             Zeit = DateTime.Now,
@@ -150,7 +150,7 @@
 
         _allBestellungen.Add(new Bestellung
         {
-            LfdNr = 382220, // Уникальный номер
+            LfdNr = 382220, 
             Ankaeufer = "test test",
             Datum = DateTime.Now,
             Zeit = DateTime.Now,
@@ -180,7 +180,7 @@
             "neue" => _allBestellungen.Where(b => b.Status_bg == "neu").ToList(),
             "bestätigte" => _allBestellungen.Where(b => b.Status_bg == "bestätigt").ToList(),
             "gedruckt" => _allBestellungen.Where(b => b.Status_bg == "gedruckt").ToList(),
-            _ => _allBestellungen // Показываем все заказы
+            _ => _allBestellungen // Show all orders
         };
     }
 
