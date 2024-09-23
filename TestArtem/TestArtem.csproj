@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ClientServices\ClientServices.csproj" />
     <ProjectReference Include="..\globals\globals.csproj" />
+    <ProjectReference Include="..\UIComponents\UIComponents.csproj" />
   </ItemGroup>
 
 </Project>
