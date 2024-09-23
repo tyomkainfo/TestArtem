@@ -27,7 +27,7 @@ namespace FloritradeApi.Controllers
             tmp.Bemerkung = "Bemerkung für diese Bestellung";
             tmp.Container = "Tag 5";
             tmp.Besteller = "Daniel";
-            tmp.Status_bg = "neu";
+            tmp.Status = 1;
             tmp.StkCC = 40;
             res.Add(tmp);
 
