@@ -20,8 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Pr
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "globals", "globals\globals.csproj", "{34E0FC18-8B12-42B6-9561-1208DC0471D2}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComponents", "UIComponents\UIComponents.csproj", "{DFB998CA-AF2A-4717-B1DF-F6CC7DB0762F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIComponents", "UIComponents\UIComponents.csproj", "{DFB998CA-AF2A-4717-B1DF-F6CC7DB0762F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -22,7 +22,7 @@ namespace ClientServices
         public List<Bestellung> GetDemoData()
         {
             List<Bestellung> _bestellungen = new List<Bestellung>();
-            
+
             _bestellungen.Add(new Bestellung
             {
                 LfdNr = 382218,
@@ -42,7 +42,6 @@ namespace ClientServices
                 Status_bg = "gedruckt",
                 StkCC = 40
             });
-
             _bestellungen.Add(new Bestellung
             {
                 LfdNr = 382219,
@@ -65,6 +64,45 @@ namespace ClientServices
             _bestellungen.Add(new Bestellung
             {
                 LfdNr = 382219,
+                Ankaeufer = "elbers",
+                Datum = DateTime.Now,
+                Zeit = DateTime.Now,
+                Kunde = "22",
+                Artikel = "* Ampelpflanzen  xyz",
+                VP = "DN",
+                Menge = "42 X 4",
+                StueckJePalette = 4,
+                GesamtanzahlNetto = 40,
+                Einzelpreis = 2.5,
+                Bemerkung = "Bemerkung für diese Bestellung",
+                Container = "Tag 2",
+                Besteller = "Daniel",
+                Status_bg = "bestätigt",
+                StkCC = 20
+            });
+
+            _bestellungen.Add(new Bestellung
+            {
+                LfdNr = 382220,
+                Ankaeufer = "test test",
+                Datum = DateTime.Now,
+                Zeit = DateTime.Now,
+                Kunde = "777",
+                Artikel = "Item",
+                VP = "DN",
+                Menge = "7 X 5",
+                StueckJePalette = 4,
+                GesamtanzahlNetto = 40,
+                Einzelpreis = 2.5,
+                Bemerkung = "Bemerkung für diese Bestellung",
+                Container = "Tag 10",
+                Besteller = "John Doi",
+                Status_bg = "neu",
+                StkCC = 20
+            });
+            _bestellungen.Add(new Bestellung
+            {
+                LfdNr = 382220,
                 Ankaeufer = "test test",
                 Datum = DateTime.Now,
                 Zeit = DateTime.Now,
