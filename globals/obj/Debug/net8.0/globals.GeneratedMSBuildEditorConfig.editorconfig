@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = globals
-build_property.ProjectDir = C:\Users\artem.ryzhov\source\repos\TestArtem\globals\
+build_property.ProjectDir = C:\My_test_priject_C#\globals\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

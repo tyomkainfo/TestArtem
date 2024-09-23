@@ -22,3 +22,15 @@ C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.dl
 C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\refint\globals.dll
 C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\globals.pdb
 C:\Users\artem.ryzhov\source\repos\TestArtem\globals\obj\Debug\net8.0\ref\globals.dll
+C:\My_test_priject_C#\globals\bin\Debug\net8.0\globals.deps.json
+C:\My_test_priject_C#\globals\bin\Debug\net8.0\globals.dll
+C:\My_test_priject_C#\globals\bin\Debug\net8.0\globals.pdb
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\globals.GeneratedMSBuildEditorConfig.editorconfig
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\globals.AssemblyInfoInputs.cache
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\globals.AssemblyInfo.cs
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\globals.csproj.CoreCompileInputs.cache
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\globals.sourcelink.json
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\globals.dll
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\refint\globals.dll
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\globals.pdb
+C:\My_test_priject_C#\globals\obj\Debug\net8.0\ref\globals.dll
