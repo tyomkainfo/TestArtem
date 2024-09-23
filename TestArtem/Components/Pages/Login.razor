@@ -1,0 +1,86 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavigationManager
+
+<PageTitle>Login</PageTitle>
+
+<h1>Anmelden form</h1>
+<div class="row justify-content-md-center">
+    <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin" class="col-lg-6">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="username">Benutzername</label>
+            <InputText id="username"
+                       class="form-control @(editContext.GetValidationMessages(new FieldIdentifier(loginModel, nameof(loginModel.Username))).Any() ? "is-invalid" : "")"
+                       @bind-Value="@loginModel.Username" />
+            <ValidationMessage For="@(() => loginModel.Username)" />
+        </div>
+        <div class="form-group">
+            <label for="password">Kennwort</label>
+            <InputText id="password"
+                       type="password"
+                       class="form-control @(editContext.GetValidationMessages(new FieldIdentifier(loginModel, nameof(loginModel.Password))).Any() ? "is-invalid" : "")"
+                       @bind-Value="@loginModel.Password" />
+            <ValidationMessage For="@(() => loginModel.Password)" />
+        </div>
+        <div class="form-group form-check pl-0 d-flex align-items-center" style="gap:20px">
+            <label class="switch">
+                <InputCheckbox @bind-Value="@loginModel.RememberMe" />
+                <span class="slider round"></span>
+            </label>
+            <p class="d-inline-block mb-0">Bleiben Sie eingeloggt</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary shadow-lg">Anmelden</button>
+        </div>
+        @if (loginModel.InvalidLogin)
+        {
+            <div class="text-danger">Benutzername oder Kennwort ist falsch.</div>
+        }
+    </EditForm>
+</div>
+
+@code {
+    private LoginModel loginModel = new LoginModel();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(loginModel);
+    }
+
+    private void HandleLogin()
+    {
+        editContext.Validate();
+
+        if (editContext.GetValidationMessages().Any())
+        {
+            return; // Если есть ошибки, выходим
+        }
+
+        if (loginModel.Username == "test" && loginModel.Password == "test")
+        {
+            NavigationManager.NavigateTo("/home");
+        }
+        else
+        {
+            loginModel.InvalidLogin = true;
+            editContext.NotifyValidationStateChanged(); // Обновляем состояние валидации
+        }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Benutzername ist erforderlich.")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Kennwort ist erforderlich.")]
+        public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
+
+        public bool InvalidLogin { get; set; }
+    }
+}
