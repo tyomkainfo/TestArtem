@@ -1,8 +1,21 @@
 ﻿@page "/home"
 @using YourProjectNamespace.Modules
+@using TestArtem.Components.Layout
 
 <PageTitle>Home</PageTitle>
 
-<h1>Bestellungen</h1>
+@code {
+    [CascadingParameter]
+    public MainLayout MainLayout { get; set; }  // Получаем ссылку на MainLayout
 
+    protected override void OnInitialized()
+    {
+        if (MainLayout != null)
+        {
+            MainLayout.IsHomePage = true; // Устанавливаем, что это главная страница
+        }
+    }
+}
+
+// Здесь ваш компонент для отображения таблицы
 <Main_table />

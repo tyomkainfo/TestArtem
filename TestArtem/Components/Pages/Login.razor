@@ -1,5 +1,6 @@
 ﻿@page "/login"
 @using System.ComponentModel.DataAnnotations
+@using TestArtem.Components.Layout
 @inject NavigationManager NavigationManager
 
 <PageTitle>Login</PageTitle>
@@ -13,7 +14,7 @@
         <div class="form-group">
             <label for="username">Benutzername</label>
             <InputText id="username"
-                       class="form-control @(editContext.GetValidationMessages(new FieldIdentifier(loginModel, nameof(loginModel.Username))).Any() ? "is-invalid" : "")"
+                       class="form-control"
                        @bind-Value="@loginModel.Username" />
             <ValidationMessage For="@(() => loginModel.Username)" />
         </div>
@@ -21,7 +22,7 @@
             <label for="password">Kennwort</label>
             <InputText id="password"
                        type="password"
-                       class="form-control @(editContext.GetValidationMessages(new FieldIdentifier(loginModel, nameof(loginModel.Password))).Any() ? "is-invalid" : "")"
+                       class="form-control"
                        @bind-Value="@loginModel.Password" />
             <ValidationMessage For="@(() => loginModel.Password)" />
         </div>
@@ -32,23 +33,35 @@
             </label>
             <p class="d-inline-block mb-0">Bleiben Sie eingeloggt</p>
         </div>
+        @if (loginModel.InvalidLogin)
+        {
+            <div class="text-danger text-center mb-3">Benutzername oder Kennwort ist falsch.</div>
+        }
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary shadow-lg">Anmelden</button>
         </div>
-        @if (loginModel.InvalidLogin)
-        {
-            <div class="text-danger">Benutzername oder Kennwort ist falsch.</div>
-        }
     </EditForm>
 </div>
+
+
 
 @code {
     private LoginModel loginModel = new LoginModel();
     private EditContext editContext;
 
+    [CascadingParameter]
+    public MainLayout MainLayout { get; set; }  // Получаем ссылку на MainLayout
+
     protected override void OnInitialized()
     {
         editContext = new EditContext(loginModel);
+
+        // Устанавливаем, что это страница логина
+        if (MainLayout != null)
+        {
+            MainLayout.IsLoginPage = true;  // Устанавливаем, что это страница логина
+            MainLayout.IsHomePage = false;   // Убираем признак главной страницы
+        }
     }
 
     private void HandleLogin()
@@ -57,7 +70,7 @@
 
         if (editContext.GetValidationMessages().Any())
         {
-            return; // Если есть ошибки, выходим
+            return;
         }
 
         if (loginModel.Username == "test" && loginModel.Password == "test")
@@ -67,17 +80,17 @@
         else
         {
             loginModel.InvalidLogin = true;
-            editContext.NotifyValidationStateChanged(); // Обновляем состояние валидации
+            editContext.NotifyValidationStateChanged();
         }
     }
 
     public class LoginModel
     {
         [Required(ErrorMessage = "Benutzername ist erforderlich.")]
-        public string Username { get; set; }
+        public string Username { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Kennwort ist erforderlich.")]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         public bool RememberMe { get; set; }
 
