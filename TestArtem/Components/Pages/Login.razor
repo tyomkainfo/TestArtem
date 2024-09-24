@@ -1,0 +1,99 @@
+﻿@page "/login"
+@using System.ComponentModel.DataAnnotations
+@using TestArtem.Components.Layout
+@inject NavigationManager NavigationManager
+
+<PageTitle>Login</PageTitle>
+
+<h1>Anmelden form</h1>
+<div class="row justify-content-md-center">
+    <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin" class="col-lg-6">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="username">Benutzername</label>
+            <InputText id="username"
+                       class="form-control"
+                       @bind-Value="@loginModel.Username" />
+            <ValidationMessage For="@(() => loginModel.Username)" />
+        </div>
+        <div class="form-group">
+            <label for="password">Kennwort</label>
+            <InputText id="password"
+                       type="password"
+                       class="form-control"
+                       @bind-Value="@loginModel.Password" />
+            <ValidationMessage For="@(() => loginModel.Password)" />
+        </div>
+        <div class="form-group form-check pl-0 d-flex align-items-center" style="gap:20px">
+            <label class="switch">
+                <InputCheckbox @bind-Value="@loginModel.RememberMe" />
+                <span class="slider round"></span>
+            </label>
+            <p class="d-inline-block mb-0">Bleiben Sie eingeloggt</p>
+        </div>
+        @if (loginModel.InvalidLogin)
+        {
+            <div class="text-danger text-center mb-3">Benutzername oder Kennwort ist falsch.</div>
+        }
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary shadow-lg">Anmelden</button>
+        </div>
+    </EditForm>
+</div>
+
+
+
+@code {
+    private LoginModel loginModel = new LoginModel();
+    private EditContext editContext;
+
+    [CascadingParameter]
+    public MainLayout MainLayout { get; set; }  // Получаем ссылку на MainLayout
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(loginModel);
+
+        // Устанавливаем, что это страница логина
+        if (MainLayout != null)
+        {
+            MainLayout.IsLoginPage = true;  // Устанавливаем, что это страница логина
+            MainLayout.IsHomePage = false;   // Убираем признак главной страницы
+        }
+    }
+
+    private void HandleLogin()
+    {
+        editContext.Validate();
+
+        if (editContext.GetValidationMessages().Any())
+        {
+            return;
+        }
+
+        if (loginModel.Username == "test" && loginModel.Password == "test")
+        {
+            NavigationManager.NavigateTo("/home");
+        }
+        else
+        {
+            loginModel.InvalidLogin = true;
+            editContext.NotifyValidationStateChanged();
+        }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Benutzername ist erforderlich.")]
+        public string Username { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Kennwort ist erforderlich.")]
+        public string Password { get; set; } = string.Empty;
+
+        public bool RememberMe { get; set; }
+
+        public bool InvalidLogin { get; set; }
+    }
+}
