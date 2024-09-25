@@ -5,7 +5,7 @@
 
 <PageTitle>Login</PageTitle>
 
-<h1>Anmelden form</h1>
+<h1>Anmeldung</h1>
 <div class="row justify-content-md-center">
     <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin" class="col-lg-6">
         <DataAnnotationsValidator />
@@ -43,24 +43,21 @@
     </EditForm>
 </div>
 
-
-
 @code {
     private LoginModel loginModel = new LoginModel();
     private EditContext editContext;
 
     [CascadingParameter]
-    public MainLayout MainLayout { get; set; }  // Получаем ссылку на MainLayout
+    public MainLayout MainLayout { get; set; }
 
     protected override void OnInitialized()
     {
         editContext = new EditContext(loginModel);
 
-        // Устанавливаем, что это страница логина
         if (MainLayout != null)
         {
-            MainLayout.IsLoginPage = true;  // Устанавливаем, что это страница логина
-            MainLayout.IsHomePage = false;   // Убираем признак главной страницы
+            MainLayout.IsLoginPage = true;
+            MainLayout.IsHomePage = false;
         }
     }
 

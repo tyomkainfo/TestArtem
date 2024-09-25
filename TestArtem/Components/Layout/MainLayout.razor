@@ -8,7 +8,10 @@
                 </div>
             </header>
 
-            <Banner />
+            @if (IsLoginPage)
+            {
+                <Banner />
+            }
         </div>
         <div class="container-fluid">
             <div id="content" class="mx-auto tm-content-container">
@@ -37,5 +40,5 @@
 
 @code {
     public bool IsLoginPage { get; set; } = false;
-    public bool IsHomePage { get; set; } = false; // Новое свойство
+    public bool IsHomePage { get; set; } = false;
 }

@@ -1,9 +1,22 @@
 ﻿@page "/etiketten"
 
-<h3>Etiketten</h3>
-<p>
-    Entschuldigen Sie, wir befinden uns noch in der Entwicklungsphase. Unsere Programmierer tun ihr Bestes.
-</p>
-@code {
+@using YourProjectNamespace.Modules
+@using TestArtem.Components.Layout
 
+<PageTitle>etiketten</PageTitle>
+
+@code {
+    [CascadingParameter]
+    public MainLayout MainLayout { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (MainLayout != null)
+        {
+            MainLayout.IsLoginPage = false;
+            MainLayout.IsHomePage = true;
+        }
+    }
 }
+
+

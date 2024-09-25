@@ -1,5 +1,6 @@
 ﻿@page "/contact"
-
+@using YourProjectNamespace.Modules
+@using TestArtem.Components.Layout
 
 
         <div class="row mt-3 mb-5 pb-3">
@@ -20,7 +21,7 @@
                         <span class="contact_span">Steuernummer</span>	 	113/5852/1618<br>
                         <span class="contact_span">Geschäftsführer</span>	 	Ann Elbers<br><br>
 
-                        Wenn Sie uns eine Nachricht senden wollen, nutzen Sie unser
+                Wenn Sie uns eine Nachricht senden wollen, nutzen Sie unser Kontaktformular
                     </p>
                 </div>
             </div>
@@ -43,7 +44,7 @@
                         </div>
                        
                         <div class="form-group">
-                            <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Message"
+                    <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Nachricht"
                                       required=""></textarea>
                         </div>
 
@@ -66,5 +67,15 @@
     <img width="100%" src="/assets/img/contact-2.jpg" alt="">
 
 @code {
+    [CascadingParameter]
+    public MainLayout MainLayout { get; set; }
 
+    protected override void OnInitialized()
+    {
+        if (MainLayout != null)
+        {
+            MainLayout.IsLoginPage = false;
+            MainLayout.IsHomePage = true;
+        }
+    }
 }
