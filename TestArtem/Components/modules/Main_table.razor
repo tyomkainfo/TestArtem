@@ -1,6 +1,6 @@
 ﻿@using globals.Models
 @using globals;
-@namespace YourProjectNamespace.Modules
+@namespace TestArtem.Components.Modules
 
 <div class="row">
     <div class="col-12">
@@ -212,7 +212,7 @@
             _ => _allBestellungen // Show all orders
         };
         ActiveBestellstatus = status;
-        // Обновление состояния для рендера
+        
         StateHasChanged();
     }
 

@@ -1,5 +1,5 @@
 ﻿using TestArtem.Components;
-using YourProjectNamespace.Services;
+using TestArtem.Components.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YourProjectNamespace.Services
+namespace TestArtem.Components.Services
 {
     public class AuthService
     {
