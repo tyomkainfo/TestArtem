@@ -779,3 +779,37 @@ input:checked + .slider:before {
         line-height: 36px;
     }
 }
+.tm-bg-black.text-center.tm-logo-container.position-relative {
+    position:relative;
+    width:300px;
+    margin:auto;
+}
+
+.rotate_custom {
+    background-repeat: no-repeat;
+    background-image: url(../img/eurofleurs-logo_02.png);
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 47px;
+    left: 85px;
+    animation: 5s linear infinite rotate;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media only screen and (max-width: 992px) {
+    .rotate_custom {
+        background-size: contain;
+        width: 24px;
+        height: 24px;
+        left: 43px;
+        top: 7px;
+    }
+}
