@@ -44,7 +44,7 @@
                         {
                             <LoginFooter />
                         }
-                        <Footer />
+                        <Footer IsLoginPage="IsLoginPage()" />
                     </footer>
                 </div>
             </div>
@@ -58,5 +58,11 @@
     {
         var currentPath = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).PathAndQuery.ToLower();
         return currentPath.Contains("/login") || currentPath.Contains("/contact");
+    }
+
+    private bool IsLoginPage()
+    {
+        var currentPath = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).PathAndQuery.ToLower();
+        return currentPath.Contains("/login");
     }
 }

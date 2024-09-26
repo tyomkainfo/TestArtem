@@ -1,6 +1,14 @@
-﻿
+﻿@code {
+    [Parameter]
+    public bool IsLoginPage { get; set; }
+}
+
 <footer class="row pt-5">
-    <div class="col-12">
+    <div class="col-12 d-flex justify-content-between">
+        @if (!IsLoginPage)
+        {
+            <a class="ausfahrt btn btn-primary shadow-lg" href="/">Ausfahrt</a>
+        }
         <p class="text-right">
             Copyright 2024 By Artem.R.
         </p>
