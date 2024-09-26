@@ -1,22 +1,6 @@
 ﻿@page "/etiketten"
-
-@using YourProjectNamespace.Modules
 @using TestArtem.Components.Layout
 
-<PageTitle>etiketten</PageTitle>
+<PageTitle>Etiketten</PageTitle>
 
-@code {
-    [CascadingParameter]
-    public MainLayout MainLayout { get; set; }
-
-    protected override void OnInitialized()
-    {
-        if (MainLayout != null)
-        {
-            MainLayout.IsLoginPage = false;
-            MainLayout.IsHomePage = true;
-        }
-    }
-}
-
-
+<h2>Etiketten Page</h2>

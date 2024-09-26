@@ -4,17 +4,4 @@
 
 <PageTitle>Home</PageTitle>
 
-<Main_table /> <!-- Ваш компонент для отображения таблицы -->
-@code {
-    [CascadingParameter]
-    public MainLayout MainLayout { get; set; }
-
-    protected override void OnInitialized()
-    {
-        if (MainLayout != null)
-        {
-            MainLayout.IsLoginPage = false;  // Страница не является страницей логина
-            MainLayout.IsHomePage = true;     // Устанавливаем, что это главная страница
-        }
-    }
-}
+<Main_table />

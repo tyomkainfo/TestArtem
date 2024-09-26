@@ -35,7 +35,7 @@
         </div>
         @if (loginModel.InvalidLogin)
         {
-            <div class="text-danger text-center mb-3">Benutzername oder Kennwort ist falsch.</div>
+                    <div class="text-danger text-center mb-3">Benutzername oder Kennwort ist falsch.</div>
         }
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary shadow-lg">Anmelden</button>
@@ -47,18 +47,9 @@
     private LoginModel loginModel = new LoginModel();
     private EditContext editContext;
 
-    [CascadingParameter]
-    public MainLayout MainLayout { get; set; }
-
     protected override void OnInitialized()
     {
         editContext = new EditContext(loginModel);
-
-        if (MainLayout != null)
-        {
-            MainLayout.IsLoginPage = true;
-            MainLayout.IsHomePage = false;
-        }
     }
 
     private void HandleLogin()

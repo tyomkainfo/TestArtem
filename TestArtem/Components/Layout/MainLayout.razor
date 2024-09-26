@@ -8,9 +8,9 @@
                 </div>
             </header>
 
-            @if (IsLoginPage)
+            @if (IsLoginPage())
             {
-                <Banner />
+                <Banner /> 
             }
         </div>
         <div class="container-fluid">
@@ -19,18 +19,11 @@
                     @Body
                 </main>
                 <footer>
-                    @if (IsLoginPage)
+                    @if (IsLoginPage())
                     {
-                        <LoginFooter />
+                        <LoginFooter /> 
                     }
-                    else if (IsHomePage)
-                    {
-                        <!-- Не выводим футер на главной странице -->
-                    }
-                    else
-                    {
-                        <Footer />
-                    }
+                    <Footer />
                 </footer>
             </div>
         </div>
@@ -39,6 +32,12 @@
 </CascadingValue>
 
 @code {
-    public bool IsLoginPage { get; set; } = false;
-    public bool IsHomePage { get; set; } = false;
+    private bool IsLoginPage()
+    {
+        
+        return NavigationManager.ToAbsoluteUri(NavigationManager.Uri).PathAndQuery.Contains("/login");
+    }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
 }

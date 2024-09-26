@@ -85,7 +85,9 @@
 </div>
 
 <script>
-    
+    $('#mainCheckbox').click(function () {
+        $('.childCheckbox').prop('checked', this.checked);
+    });
 </script>
 
 
