@@ -1,7 +1,9 @@
 ﻿@page "/login"
 @using System.ComponentModel.DataAnnotations
 @using TestArtem.Components.Layout
+@using YourProjectNamespace.Services
 @inject NavigationManager NavigationManager
+@inject AuthService AuthService
 
 <PageTitle>Login</PageTitle>
 
@@ -35,7 +37,7 @@
         </div>
         @if (loginModel.InvalidLogin)
         {
-                    <div class="text-danger text-center mb-3">Benutzername oder Kennwort ist falsch.</div>
+            <div class="text-danger text-center mb-3">Benutzername oder Kennwort ist falsch.</div>
         }
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary shadow-lg">Anmelden</button>
@@ -61,11 +63,12 @@
             return;
         }
 
-        if (loginModel.Username == "test" && loginModel.Password == "test")
+        try
         {
+            AuthService.Login(loginModel.Username, loginModel.Password);
             NavigationManager.NavigateTo("/home");
         }
-        else
+        catch
         {
             loginModel.InvalidLogin = true;
             editContext.NotifyValidationStateChanged();

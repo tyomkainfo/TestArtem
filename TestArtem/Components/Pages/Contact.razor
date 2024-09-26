@@ -2,68 +2,62 @@
 @using YourProjectNamespace.Modules
 @using TestArtem.Components.Layout
 
+<div class="row mt-3 mb-5 pb-3">
+    <div class="col-12">
+        <div class="mx-auto tm-about-text-container px-3">
+            <h2 class="tm-page-title mb-4 tm-text-primary">Impressum</h2>
+            <p class="mb-3">
+                Elbers GmbH & Co KG<br>
+                Ottersweg 6<br>
+                D-47624 Kevelaer<br>
+            </p>
+            <p class="mb-4">
+                <span class="contact_span">Telefon</span> 0049 (0) 28 32-5 00 01<br>
+                <span class="contact_span">Fax</span> 0049 (0) 28 32-6 23 7<br>
+                <span class="contact_span">E-Mail</span> elbers@elbers-eurofleurs.de<br><br>
 
-        <div class="row mt-3 mb-5 pb-3">
-            <div class="col-12">
-                <div class="mx-auto tm-about-text-container px-3">
-                    <h2 class="tm-page-title mb-4 tm-text-primary">Impressum</h2>
-                    <p class="mb-3">
-                        Elbers GmbH & Co KG<br>
-                        Ottersweg 6<br>
-                        D-47624 Kevelaer<br>
-                    </p>
-                    <p class="mb-4">
-                        <span class="contact_span">Telefon</span>		0049 (0) 28 32-5 00 01<br>
-                        <span class="contact_span">Fax</span>	 	0049 (0) 28 32-6 23 7<br>
-                        <span class="contact_span">E-Mail</span>	 	elbers@elbers-eurofleurs.de<br><br>
-
-                        <span class="contact_span">Handelsregister</span>	 	Amtsgericht Kleve HRA 4177<br>
-                        <span class="contact_span">Steuernummer</span>	 	113/5852/1618<br>
-                        <span class="contact_span">Geschäftsführer</span>	 	Ann Elbers<br><br>
+                <span class="contact_span">Handelsregister</span> Amtsgericht Kleve HRA 4177<br>
+                <span class="contact_span">Steuernummer</span> 113/5852/1618<br>
+                <span class="contact_span">Geschäftsführer</span> Ann Elbers<br><br>
 
                 Wenn Sie uns eine Nachricht senden wollen, nutzen Sie unser Kontaktformular
-                    </p>
-                </div>
-            </div>
+            </p>
         </div>
-        <div class="mx-auto pb-3 tm-about-text-container px-3">
-            <div class="row">
-                <div class="col-lg-6 mb-5">
-                    <form id="contact-form" action="" method="POST" class="tm-contact-form">
-                        <div class="form-group">
-                            <select class="form-control" id="contact-select" name="inquiry">
-                                <option value="-">Herr</option>
-                                <option value="sales">Frau</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control rounded-0" placeholder="Name" required="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-control rounded-0" placeholder="Email" required="" />
-                        </div>
-                       
-                        <div class="form-group">
+    </div>
+</div>
+<div class="mx-auto pb-3 tm-about-text-container px-3">
+    <div class="row">
+        <div class="col-lg-6 mb-5">
+            <form id="contact-form" action="" method="POST" class="tm-contact-form">
+                <div class="form-group">
+                    <select class="form-control" id="contact-select" name="inquiry">
+                        <option value="-">Herr</option>
+                        <option value="sales">Frau</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control rounded-0" placeholder="Name" required="" />
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control rounded-0" placeholder="Email" required="" />
+                </div>
+                <div class="form-group">
                     <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Nachricht"
-                                      required=""></textarea>
-                        </div>
-
-                        <div class="form-group mb-0">
-                            <button type="submit" class="btn btn-primary rounded-0 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Absenden</span></button>
-                        </div>
-                    </form>
+                              required=""></textarea>
                 </div>
-                <div class="col-lg-6">
-                    <div class="mapouter mb-60">
-                        <div class="gmap_canvas">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.933947034042!2d6.234975700000001!3d51.5511102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c767af472c1cd3%3A0x703212584dfa29cd!2sEurofleurs%20Elbers%20GmbH%20%26%20Co.%20KG!5e0!3m2!1sde!2sde!4v1726649532160!5m2!1sde!2sde" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
+                <div class="form-group mb-0">
+                    <button type="submit" class="btn btn-primary rounded-0 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Absenden</span></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <div class="mapouter mb-60">
+                <div class="gmap_canvas">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2480.933947034042!2d6.234975700000001!3d51.5511102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c767af472c1cd3%3A0x703212584dfa29cd!2sEurofleurs%20Elbers%20GmbH%20%26%20Co.%20KG!5e0!3m2!1sde!2sde!4v1726649532160!5m2!1sde!2sde" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
-   
+    </div>
+</div>
 
-    <img width="100%" src="/assets/img/contact-2.jpg" alt="">
-
-
+<img width="100%" src="/assets/img/contact-2.jpg" alt="">
