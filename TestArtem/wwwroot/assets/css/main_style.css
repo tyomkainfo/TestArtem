@@ -64,7 +64,10 @@ h2, p { color: #666666; }
     color: white;
 }
 
-.tm-bg-gray { background-color: #F4F4F4; }
+.tm-bg-gray {
+    background-color: #F4F4F4;
+    min-height:517px;
+}
 .tm-text-primary {
     color: #007b5e;
 }
@@ -96,11 +99,17 @@ h2, p { color: #666666; }
 
 .tm-welcome-container-inner {
     margin: auto;
-    max-width: 1000px;
-    margin-top: 147px;
+    max-width: 1060px;
+    
     text-shadow: 4px 11px 5px #000;
 }
-.tm-welcome-text { font-size: 18px; }
+    .tm-welcome-container-inner .tm-welcome-text {
+        font-size:39px;
+        line-height:60px;
+    }
+    .tm-welcome-text {
+        font-size: 18px;
+    }
 
 .btn {
     padding: 15px 60px;
@@ -696,14 +705,14 @@ input:checked + .slider:before {
     height: 520px;
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-image: url(../img/IMG_5.jpg);
+    background-image: url(../img/IMG_4.jpg);
     background-size: cover
 }
 .item_car_3 {
     height: 520px;
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-image: url(../img/IMG_5.jpg);
+    background-image: url(../img/IMG_3.jpg);
     background-size: cover
 }
 .item_car_4 {
@@ -712,4 +721,61 @@ input:checked + .slider:before {
     background-repeat: no-repeat;
     background-image: url(../img/IMG_5.jpg);
     background-size: cover
+}
+@media only screen and (max-width: 1754px) {
+    #tm-main-nav .nav-item {
+        margin: 0px 10px;
+    }
+}
+@media only screen and (max-width: 1530px) {
+    #tm-main-nav .nav-item {
+        margin: 0px 10px;
+    }
+    .tm-nav-link {
+        font-size:14px;
+    }
+}
+@media only screen and (max-width: 1369px) {
+    .tm-nav-link {
+        font-size: 13px;
+    }
+    #tm-main-nav .nav-item {
+        margin: 0px 7px;
+    }
+}
+@media only screen and (max-width: 1240px) {
+    .tm-nav-link {
+        font-size: 11px;
+    }
+
+    #tm-main-nav .nav-item {
+        margin: 0px 5px;
+    }
+}
+@media only screen and (max-width: 1031px) {
+    .tm-nav-link {
+        font-size: 10px;
+    }
+
+    #tm-main-nav .nav-item {
+        margin: 0px 4px;
+    }
+}
+    @media only screen and (max-width: 800px) {
+        .item_car, .item_car_2, .item_car_3, .item_car_4, #tm-video-container {
+            height: 450px;
+        }
+    }
+
+    @media only screen and (max-width: 992px) {
+        .navbar-toggler.tm-bg-black.py-2.px-3.mr-0.ml-auto {
+            display: block !important;
+            background-image:none!important;
+        }
+    }
+@media only screen and (max-width: 500px) {
+    .tm-welcome-container-inner .tm-welcome-text {
+        font-size: 29px;
+        line-height: 36px;
+    }
 }
