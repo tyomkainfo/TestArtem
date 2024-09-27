@@ -217,13 +217,12 @@ h2, p { color: #666666; }
     right: 20px;
     z-index: 1000;
 }
-
 .tm-content-container {
     max-width: 1422px;
-    padding-top: 80px;
+    padding-top: 100px;
     padding-bottom: 35px;
     min-height:100vh;
-    display:flex;
+/*    display:flex;*/
     align-items:center;
     flex-wrap:wrap;
 }
@@ -793,7 +792,7 @@ input:checked + .slider:before {
     width: 50px;
     height: 47px;
     left: 85px;
-    animation: 5s linear infinite rotate;
+/*    animation: 5s linear infinite rotate;*/
 }
 @keyframes rotate {
     from {
@@ -812,4 +811,9 @@ input:checked + .slider:before {
         left: 43px;
         top: 7px;
     }
+}
+footer .row.pt-5 {
+    /*    position: absolute;
+    bottom: 0;
+    width: 100%;*/
 }
