@@ -46,32 +46,32 @@
 </div>
 
 @code {
-    private LoginModel loginModel = new LoginModel();
+    private LoginModel loginModel = new LoginModel(); // Инициализация модели логина
     private EditContext editContext;
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(loginModel);
+        editContext = new EditContext(loginModel); // Инициализация контекста редактирования
     }
 
     private void HandleLogin()
     {
-        editContext.Validate();
+        editContext.Validate(); // Валидация формы
 
         if (editContext.GetValidationMessages().Any())
         {
-            return;
+            return; // Если есть ошибки валидации, выходим
         }
 
         try
         {
-            AuthService.Login(loginModel.Username, loginModel.Password);
-            NavigationManager.NavigateTo("/home");
+            AuthService.Login(loginModel.Username, loginModel.Password); // Попытка входа
+            NavigationManager.NavigateTo("/home"); // Перенаправление на главную страницу
         }
         catch
         {
-            loginModel.InvalidLogin = true;
-            editContext.NotifyValidationStateChanged();
+            loginModel.InvalidLogin = true; // Установка флага ошибки
+            editContext.NotifyValidationStateChanged(); // Уведомление о изменении состояния валидации
         }
     }
 
@@ -85,6 +85,6 @@
 
         public bool RememberMe { get; set; }
 
-        public bool InvalidLogin { get; set; }
+        public bool InvalidLogin { get; set; } // Флаг для отображения ошибки входа
     }
 }
