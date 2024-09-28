@@ -9,25 +9,43 @@
         </p>
         <p class="tm-welcome-text mb-5 text-white">
             Lassen Sie sich bei uns registrieren um Floritrade zu nutzen!<br>
-            Sie erhalten unsere Bestellungen Online und können direkt Etiketten, Lieferscheine und Rechnungen schreiben, sodass Sie zukünftig keine Daten mehr mehrfach eingeben müssen.
-            
-            Rufen Sie uns unter 02832 / 50001-83 an oder melden Sie sich per Email unter elbers@elbers-eurofleurs.de um mehr Informationen zu bekommen oder an einer kurzen Vorführung teilzunehmen.
-            
-            das FLORITRADE-System ist für unsere Lieferanten kostenlos!
-            <br>
-            Eurofleurs Elbers GmbH & Co KG.
+           
         </p>
         
     </div>
 </div>
 
-<div id="tm-video-container">
+@* <div id="tm-video-container">
     <video autoplay muted loop id="tm-video">
         <source src="/assets/video/wheat-field.mp4" type="video/mp4">
     </video>
+</div> *@
+
+
+<div id="tm-video-container" class="owl-carousel">
+    <div class="item_car"></div>
+    <div class="item_car_2"></div>
+    <div class="item_car_3"></div>
+    <div class="item_car_4"></div>
 </div>
 
-<i id="tm-video-control-button" class="fas fa-pause"></i>
+<script>
+    $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        responsive: {
+            0: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    });
+</script>
 
 @code {
 

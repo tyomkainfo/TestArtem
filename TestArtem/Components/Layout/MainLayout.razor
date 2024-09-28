@@ -1,41 +1,69 @@
 ﻿@inherits LayoutComponentBase
-<CascadingValue Value=this>
-    <div class="tm-page-wrap mx-auto">
-        <div class="position-relative">
-            <header class="position-absolute tm-site-header">
-                <div class="container-fluid position-relative">
-                    <NavMenu />
-                </div>
-            </header>
+@using TestArtem.Components.Services
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
 
-            <Banner />
-        </div>
-        <div class="container-fluid">
-            <div id="content" class="mx-auto tm-content-container">
-                <main>
-                    @Body
-                </main>
-                <footer>
-                    @if (IsLoginPage)
-                    {
-                        <LoginFooter />
-                    }
-                    else if (IsHomePage)
-                    {
-                        <!-- Не выводим футер на главной странице -->
-                    }
-                    else
-                    {
-                        <Footer />
-                    }
-                </footer>
+<CascadingValue Value=this>
+    @if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+    else
+    {
+        <div class="tm-page-wrap mx-auto">
+            <div class="position-relative">
+                <header class="position-absolute tm-site-header @(IsLoginPage() ? "additional-class" : "")">
+                    <div class="container-fluid position-relative">
+                        <div class="row">
+                            <div class="col-7 col-lg-4 col-md-3">
+                                <a href="home" class="tm-bg-black text-center tm-logo-container position-relative">
+                                    <img src="assets/img/eurofleurs-logo.png" alt="logo">
+                                    <div class="rotate_custom"></div>
+                                    <p>FloriTrade Bestellsystem</p>
+                                </a>
+                            </div>
+                            @if (!IsLoginOrContactPage())
+                            {
+                                <NavMenu />
+                            }
+                        </div>
+                    </div>
+                </header>
+
+                @if (IsLoginOrContactPage())
+                {
+                    <Banner />
+                }
             </div>
+            <div class="container-fluid">
+                <div id="content" class="mx-auto tm-content-container">
+                    <main>
+                        @Body
+                    </main>
+                    <footer>
+                        @if (IsLoginOrContactPage())
+                        {
+                            <LoginFooter />
+                        }
+                        <Footer IsLoginOrContactPage="IsLoginOrContactPage()" />
+                    </footer>
+                </div>
+            </div>
+            <Modal />
         </div>
-        <Modal />
-    </div>
+    }
 </CascadingValue>
 
 @code {
-    public bool IsLoginPage { get; set; } = false;
-    public bool IsHomePage { get; set; } = false; // Новое свойство
+    private bool IsLoginOrContactPage()
+    {
+        var currentPath = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).PathAndQuery.ToLower();
+        return currentPath.Contains("/login") || currentPath.Contains("/contact");
+    }
+
+    private bool IsLoginPage()
+    {
+        var currentPath = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).PathAndQuery.ToLower();
+        return currentPath.Contains("/login");
+    }
 }

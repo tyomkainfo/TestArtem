@@ -1,13 +1,15 @@
 ﻿using ClientServices;
 using ClientServices.WebApi;
 using TestArtem.Components;
+using TestArtem.Components.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages(); // Добавляем поддержку Razor Pages
+builder.Services.AddRazorPages();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddSingleton<IWebApiBestellungen,WebApiBestellungen>();
 builder.Services.AddSingleton<BestellungenService>();
@@ -25,15 +27,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
 
-// Указываем маршрут по умолчанию для страницы логина
 app.MapGet("/", (context) =>
 {
-    context.Response.Redirect("/login"); // Теперь перенаправляем на /login
+    context.Response.Redirect("/login");
     return Task.CompletedTask;
 });
 
-// Запуск приложения
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+
+
 app.Run();
