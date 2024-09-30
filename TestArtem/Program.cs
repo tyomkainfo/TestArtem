@@ -1,4 +1,6 @@
-﻿using TestArtem.Components;
+﻿using ClientServices;
+using ClientServices.WebApi;
+using TestArtem.Components;
 using TestArtem.Components.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddScoped<AuthService>();
+
+builder.Services.AddSingleton<IWebApiBestellungen,WebApiBestellungen>();
+builder.Services.AddSingleton<BestellungenService>();
 
 var app = builder.Build();
 

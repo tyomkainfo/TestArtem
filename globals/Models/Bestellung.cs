@@ -11,41 +11,41 @@ namespace globals.Models
     public class Bestellung
 
     {
-        [DataMember(Name = "LfdNr")]
+        [DataMember(Name = "lfdNr")]
         public int LfdNr { get; set; }
-        [DataMember(Name = "Ankaeufer")]
+        [DataMember(Name = "ankaeufer")]
         public string Ankaeufer { get; set; }
-        [DataMember(Name = "Datum")]
+        [DataMember(Name = "datum")]
         public DateTime Datum { get; set; }
-        [DataMember(Name = "Kunde")]
+        [DataMember(Name = "kunde")]
         public string Kunde { get; set; }
-        [DataMember(Name = "Artikel")]
+        [DataMember(Name = "artikel")]
         public string Artikel { get; set; }
-        [DataMember(Name = "VP")]
+        [DataMember(Name = "vP")]
         public string VP { get; set; }
-        [DataMember(Name = "Anzahlpaletten")]
+        [DataMember(Name = "anzahlpaletten")]
         public int Anzahlpaletten { get; set; }
-        [DataMember(Name = "StueckJePalette")]
+        [DataMember(Name = "stueckJePalette")]
         public int StueckJePalette { get; set; }
-        [DataMember(Name = "GesamtanzahlNetto")]
+        [DataMember(Name = "sesamtanzahlNetto")]
         public int GesamtanzahlNetto { get; set; }
-        [DataMember(Name = "Einzelpreis")]
+        [DataMember(Name = "einzelpreis")]
         public double Einzelpreis { get; set; }
-        [DataMember(Name = "Bemerkung")]
+        [DataMember(Name = "bemerkung")]
         public string Bemerkung { get; set; }
-        [DataMember(Name = "Container")]
+        [DataMember(Name = "container")]
         public string Container { get; set; }
-        [DataMember(Name = "Besteller")]
+        [DataMember(Name = "besteller")]
         public string Besteller { get; set; }
-        [DataMember(Name = "Status")]
-        public string Status { get; set; }
-        [DataMember(Name = "StkCC")]
+        [DataMember(Name = "status")]
+        public int Status { get; set; }
+        [DataMember(Name = "zeit")]
         public DateTime Zeit { get; set; }
-        [DataMember(Name = "Zeit")]
-        public string Menge { get; set; }
         [DataMember(Name = "Menge")]
+        public string Menge { get; set; }
+        [DataMember(Name = "status_bg")]
         public string Status_bg { get; set; }
-        [DataMember(Name = "Status_bg")]
+        [DataMember(Name = "stkCC")]
         public int StkCC { get; set; }
 
     }
