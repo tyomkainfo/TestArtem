@@ -22,7 +22,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-
 app.MapGet("/", (context) =>
 {
     context.Response.Redirect("/login");
@@ -31,6 +30,5 @@ app.MapGet("/", (context) =>
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
-
 
 app.Run();

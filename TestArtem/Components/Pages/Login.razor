@@ -5,7 +5,7 @@
 @inject NavigationManager NavigationManager
 @inject AuthService AuthService
 
-<PageTitle>Login</PageTitle>
+<PageTitle>Anmeldung</PageTitle>
 
 <h1>Anmeldung</h1>
 <div class="row justify-content-md-center">
@@ -46,32 +46,32 @@
 </div>
 
 @code {
-    private LoginModel loginModel = new LoginModel(); // Инициализация модели логина
+    private LoginModel loginModel = new LoginModel();
     private EditContext editContext;
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(loginModel); // Инициализация контекста редактирования
+        editContext = new EditContext(loginModel);
     }
 
     private void HandleLogin()
     {
-        editContext.Validate(); // Валидация формы
+        editContext.Validate();
 
         if (editContext.GetValidationMessages().Any())
         {
-            return; // Если есть ошибки валидации, выходим
+            return;
         }
 
         try
         {
-            AuthService.Login(loginModel.Username, loginModel.Password); // Попытка входа
-            NavigationManager.NavigateTo("/home"); // Перенаправление на главную страницу
+            AuthService.Login(loginModel.Username, loginModel.Password);
+            NavigationManager.NavigateTo("/home");
         }
         catch
         {
-            loginModel.InvalidLogin = true; // Установка флага ошибки
-            editContext.NotifyValidationStateChanged(); // Уведомление о изменении состояния валидации
+            loginModel.InvalidLogin = true;
+            editContext.NotifyValidationStateChanged();
         }
     }
 
@@ -85,6 +85,6 @@
 
         public bool RememberMe { get; set; }
 
-        public bool InvalidLogin { get; set; } // Флаг для отображения ошибки входа
+        public bool InvalidLogin { get; set; }
     }
 }

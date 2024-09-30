@@ -4,57 +4,52 @@
 @inject NavigationManager NavigationManager
 
 <CascadingValue Value=this>
-    @if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
-    {
-        NavigationManager.NavigateTo("/login");
-    }
-    else
-    {
-        <div class="tm-page-wrap mx-auto">
-            <div class="position-relative">
-                <header class="position-absolute tm-site-header @(IsLoginPage() ? "additional-class" : "")">
-                    <div class="container-fluid position-relative">
-                        <div class="row">
-                            <div class="col-7 col-lg-4 col-md-3">
-                                <a href="home" class="tm-bg-black text-center tm-logo-container position-relative">
-                                    <img src="assets/img/eurofleurs-logo.png" alt="logo">
-                                    <div class="rotate_custom"></div>
-                                    <p>FloriTrade Bestellsystem</p>
-                                </a>
-                            </div>
-                            @if (!IsLoginOrContactPage())
-                            {
-                                <NavMenu />
-                            }
+    <div class="tm-page-wrap mx-auto">
+        <div class="position-relative">
+            <header class="position-absolute tm-site-header @(IsLoginPage() ? "additional-class" : "")">
+                <div class="container-fluid position-relative">
+                    <div class="row">
+                        <div class="col-7 col-lg-4 col-md-3">
+                            <a href="home" class="tm-bg-black text-center tm-logo-container position-relative">
+                                <img src="assets/img/eurofleurs-logo.png" alt="logo">
+                                <div class="rotate_custom"></div>
+                                <p>FloriTrade Bestellsystem</p>
+                            </a>
                         </div>
-                    </div>
-                </header>
-
-                @if (IsLoginOrContactPage())
-                {
-                    <Banner />
-                }
-            </div>
-            <div class="container-fluid">
-                <div id="content" class="mx-auto tm-content-container">
-                    <main>
-                        @Body
-                    </main>
-                    <footer>
-                        @if (IsLoginOrContactPage())
+                        @if (!IsLoginOrContactPage())
                         {
-                            <LoginFooter />
+                            <NavMenu />
                         }
-                        <Footer IsLoginOrContactPage="IsLoginOrContactPage()" />
-                    </footer>
+                    </div>
                 </div>
-            </div>
-            <Modal />
+            </header>
+
+            @if (IsLoginOrContactPage())
+            {
+                <Banner />
+            }
         </div>
-    }
+        <div class="container-fluid">
+            <div id="content" class="mx-auto tm-content-container">
+                <main>
+                    @Body
+                </main>
+                <footer>
+                    @if (IsLoginOrContactPage())
+                    {
+                        <LoginFooter />
+                    }
+                    <Footer IsLoginOrContactPage="IsLoginOrContactPage()" />
+                </footer>
+            </div>
+        </div>
+        <Modal />
+    </div>
 </CascadingValue>
 
 @code {
+    private bool isInitialRender = true;
+
     private bool IsLoginOrContactPage()
     {
         var currentPath = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).PathAndQuery.ToLower();
@@ -65,5 +60,18 @@
     {
         var currentPath = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).PathAndQuery.ToLower();
         return currentPath.Contains("/login");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Проверяем аутентификацию и перенаправляем при необходимости
+            if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
+            {
+                NavigationManager.NavigateTo("/login");
+            }
+            await InvokeAsync(StateHasChanged); // Обновление состояния компонента
+        }
     }
 }

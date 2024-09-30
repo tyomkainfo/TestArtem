@@ -1,13 +1,12 @@
-﻿ @code {
-    [Parameter]
-    public bool IsLoginOrContactPage { get; set; }
-}
+﻿@using TestArtem.Components.Services
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
 
 <div class="row pt-5">
     <div class="col-12 d-flex justify-content-between align-items-center">
         @if (!IsLoginOrContactPage)
         {
-            <a class="ausfahrt btn btn-primary shadow-lg" href="/">Abmelden</a>
+            <button class="ausfahrt btn btn-primary shadow-lg" @onclick="Logout">Abmelden</button>
         }
         <p class="text-right">
             Copyright 2024 By Artem.R.
@@ -15,3 +14,13 @@
     </div>
 </div>
 
+@code {
+    [Parameter]
+    public bool IsLoginOrContactPage { get; set; }
+
+    private void Logout()
+    {
+        AuthService.Logout(); // Вызов метода Logout из AuthService
+        NavigationManager.NavigateTo("/login"); // Перенаправление на страницу логина
+    }
+}
