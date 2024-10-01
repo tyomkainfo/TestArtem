@@ -10,7 +10,7 @@
                 <div class="container-fluid position-relative">
                     <div class="row">
                         <div class="col-7 col-lg-4 col-md-3">
-                            <a href="home" class="tm-bg-black text-center tm-logo-container position-relative">
+                            <a href="javascript:void(0);" @onclick="NavigateToHome" class="tm-bg-black text-center tm-logo-container position-relative">
                                 <img src="assets/img/eurofleurs-logo.png" alt="logo">
                                 <div class="rotate_custom"></div>
                                 <p>FloriTrade Bestellsystem</p>
@@ -48,7 +48,7 @@
 </CascadingValue>
 
 @code {
-    private bool isInitialRender = true;
+    private bool isLoading = true;
 
     private bool IsLoginOrContactPage()
     {
@@ -62,20 +62,41 @@
         return currentPath.Contains("/login");
     }
 
+    private void NavigateToHome()
+    {
+        if (AuthService.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/home");
+        }
+    }
+
+    private void Logout()
+    {
+        AuthService.Logout();
+        NavigationManager.NavigateTo("/login");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Необходимо дождаться завершения рендеринга
+        await LoadAuthenticationStateAsync();
+    }
+
+    private async Task LoadAuthenticationStateAsync()
+    {
+        await AuthService.LoadAuthenticationStateAsync();
+
+        if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            // Инициализация состояния аутентификации
-            await AuthService.InitializeAuthenticationStateAsync();
-
-            // Проверяем аутентификацию и перенаправляем при необходимости
-            if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
-            {
-                NavigationManager.NavigateTo("/login");
-            }
-
-            await InvokeAsync(StateHasChanged); // Обновление состояния компонента
+            await InvokeAsync(StateHasChanged);
         }
     }
 }

@@ -1,33 +1,41 @@
 ﻿using System;
 using Microsoft.JSInterop;
+using System.Threading.Tasks;
 
 namespace TestArtem.Components.Services
 {
     public class AuthService
     {
         private bool isAuthenticated;
-        private readonly IJSRuntime jsRuntime;
-
-        public AuthService(IJSRuntime jsRuntime)
-        {
-            this.jsRuntime = jsRuntime;
-        }
+        private readonly IJSRuntime _jsRuntime;
 
         public bool IsAuthenticated => isAuthenticated;
 
-        public async Task InitializeAuthenticationStateAsync()
+        public AuthService(IJSRuntime jsRuntime)
         {
-            var authState = await jsRuntime.InvokeAsync<string>("localStorage.getItem", "isAuthenticated");
-            isAuthenticated = authState == "true";
+            _jsRuntime = jsRuntime;
         }
 
-        public async Task Login(string username, string password)
+        public async Task LoadAuthenticationStateAsync()
         {
-            // В реальном приложении проверяйте учетные данные с помощью базы данных или хранилища
+            // Получаем значение из localStorage только на клиенте
+            try
+            {
+                var value = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", "isAuthenticated");
+                isAuthenticated = !string.IsNullOrEmpty(value) && bool.Parse(value);
+            }
+            catch (Exception)
+            {
+                isAuthenticated = false; // В случае ошибки считаем пользователя неавторизованным
+            }
+        }
+
+        public void Login(string username, string password)
+        {
             if (username == "test" && password == "test")
             {
                 isAuthenticated = true;
-                await jsRuntime.InvokeVoidAsync("localStorage.setItem", "isAuthenticated", "true");
+                SaveAuthenticationState();
             }
             else
             {
@@ -35,15 +43,20 @@ namespace TestArtem.Components.Services
             }
         }
 
-        public async Task Logout()
+        public void Logout()
         {
             isAuthenticated = false;
-            await jsRuntime.InvokeVoidAsync("localStorage.removeItem", "isAuthenticated");
+            ClearAuthenticationState();
         }
 
-        public bool IsUserLoggedIn()
+        private void SaveAuthenticationState()
         {
-            return isAuthenticated;
+            _jsRuntime.InvokeVoidAsync("localStorage.setItem", "isAuthenticated", true);
+        }
+
+        private void ClearAuthenticationState()
+        {
+            _jsRuntime.InvokeVoidAsync("localStorage.removeItem", "isAuthenticated");
         }
     }
 }
