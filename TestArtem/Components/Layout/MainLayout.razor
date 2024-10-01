@@ -66,11 +66,15 @@
     {
         if (firstRender)
         {
+            // Инициализация состояния аутентификации
+            await AuthService.InitializeAuthenticationStateAsync();
+
             // Проверяем аутентификацию и перенаправляем при необходимости
             if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
             {
                 NavigationManager.NavigateTo("/login");
             }
+
             await InvokeAsync(StateHasChanged); // Обновление состояния компонента
         }
     }
