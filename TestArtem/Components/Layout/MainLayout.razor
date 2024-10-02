@@ -48,7 +48,7 @@
 </CascadingValue>
 
 @code {
-    private bool isLoading = true;
+    private bool isAuthenticatedLoaded = false;
 
     private bool IsLoginOrContactPage()
     {
@@ -76,27 +76,21 @@
         NavigationManager.NavigateTo("/login");
     }
 
-    protected override async Task OnInitializedAsync()
-    {
-        // Необходимо дождаться завершения рендеринга
-        await LoadAuthenticationStateAsync();
-    }
-
-    private async Task LoadAuthenticationStateAsync()
-    {
-        await AuthService.LoadAuthenticationStateAsync();
-
-        if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
-        {
-            NavigationManager.NavigateTo("/login");
-        }
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await InvokeAsync(StateHasChanged);
+            await AuthService.LoadAuthenticationStateAsync();
+
+            if (!AuthService.IsAuthenticated && !IsLoginOrContactPage())
+            {
+                NavigationManager.NavigateTo("/login");
+            }
+            else
+            {
+                isAuthenticatedLoaded = true;
+                StateHasChanged(); 
+            }
         }
     }
 }

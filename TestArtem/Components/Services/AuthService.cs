@@ -18,7 +18,7 @@ namespace TestArtem.Components.Services
 
         public async Task LoadAuthenticationStateAsync()
         {
-            // Получаем значение из localStorage только на клиенте
+            
             try
             {
                 var value = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", "isAuthenticated");
@@ -26,7 +26,7 @@ namespace TestArtem.Components.Services
             }
             catch (Exception)
             {
-                isAuthenticated = false; // В случае ошибки считаем пользователя неавторизованным
+                isAuthenticated = false; 
             }
         }
 
